@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".addRDV"
+    android:layout_margin="10dp">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <Button
+                android:id="@+id/buttonAccueil"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Liste des RDVs"
+                tools:layout_conversion_absoluteHeight="48dp"
+                tools:layout_conversion_absoluteWidth="88dp" />
+
+            <TextView
+                android:id="@+id/editId"
+                />
+
+            <EditText
+                android:id="@+id/editTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Titre" />
+
+            <EditText
+                android:id="@+id/editAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Adresse" />
+
+            <EditText
+                android:id="@+id/editDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Entrer Date" />
+
+            <EditText
+                android:id="@+id/editTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Selectionner Heure" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="5">
+
+                <EditText
+                    android:id="@+id/editPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:digits="0123456789+"
+                    android:hint="Entrer un numéro"
+                    android:inputType="phone" />
+
+                <ImageButton
+                    android:id="@+id/AccessContact"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="end"
+                    android:layout_weight="1"
+                    android:src="@drawable/ic_baseline_assignment_ind_24"
+                    tools:src="@drawable/ic_baseline_assignment_ind_24"
+                    tools:srcCompat="@drawable/ic_baseline_assignment_ind_24" />;
+
+
+            </TableRow>
+
+            <EditText
+                android:id="@+id/editDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="Entrer Description" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="bottom|center"
+                android:layout_margin="10dp"
+                android:layout_gravity="bottom">
+
+                <Button
+                    android:id="@+id/Submission"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:onClick="saveRdv"
+                    android:text="Valider"
+                    android:layout_margin="10dp"/>
+
+                <Button
+                    android:id="@+id/Cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:onClick="onCancelClick"
+                    android:layout_margin="10dp"
+                    android:text="Annuler" />
+
+            </LinearLayout>
+        </TableLayout>
+    </ScrollView>
+
+
+</LinearLayout>
