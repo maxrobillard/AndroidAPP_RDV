@@ -182,10 +182,11 @@ public class addRDV extends AppCompatActivity {
 
         }
 
-        Intent notifyIntent = new Intent(this,MyReceiver.class);
+        Intent notifyIntent = new Intent(this, MyReceiver.class);
+        Log.v("----------", String.valueOf(notifyIntent));
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 2, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
-        alarmManager.set(AlarmManager.RTC_WAKEUP,  System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(7*24*60), pendingIntent);
+        alarmManager.set(AlarmManager.RTC_WAKEUP,  System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(0), pendingIntent);
 
         startActivity(main);
 
