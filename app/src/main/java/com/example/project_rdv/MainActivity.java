@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseHelper myHelper;
     ListView myListView;
     SharedPreferences sharedPreferencesStyle;
+    SharedPreferences sharedPreferencesLang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,14 @@ public class MainActivity extends AppCompatActivity {
         sharedPreferencesStyle = getSharedPreferences("PREF_THEME", Context.MODE_PRIVATE);
         int style = sharedPreferencesStyle.getInt("theme",R.style.Theme_Project_RDV);
         setTheme(style);
+        sharedPreferencesLang = getSharedPreferences("PREF_NAME", MODE_PRIVATE);
+        String language = sharedPreferencesLang.getString("lang","en");
+        Locale locale = new Locale(language);
+        Configuration conf = getResources().getConfiguration();
+        conf.locale = locale;
+        getBaseContext().getResources().updateConfiguration(conf,
+                getBaseContext().getResources().getDisplayMetrics());
+
         setContentView(R.layout.activity_main);
 
         myHelper=new DatabaseHelper(this);
