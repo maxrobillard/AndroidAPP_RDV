@@ -1,3 +1,22 @@
 <resources>
-    <string name="app_name">Project_RDV</string>
+    <string name="app_name">Management of appointments</string>
+    <string name="addRdv">Add an appointment</string>
+    <string name="editDesc">Enter Description</string>
+    <string name="editPhone">Enter a phone number</string>
+    <string name="editTime">Select Time</string>
+    <string name="btnAccueil">List of meetings</string>
+    <string name="Empty">No appointment</string>
+    <string name="editTitle">Title</string>
+    <string name="editDate">Enter Date</string>
+    <string name="editAddress">Address</string>
+    <string name="Submit">Validate</string>
+    <string name="Cancel">Cancel</string>
+    <string name="settings">Settings</string>
+    <string name="settings_lang">Language</string>
+    <string name="settings_en">English</string>
+    <string name="settings_fr">French</string>
+    <string name="call">Call</string>
+    <string name="map">Map</string>
+    <string name="share">Share</string>
+    <string name="delete">Delete</string>
 </resources>

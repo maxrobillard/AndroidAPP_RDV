@@ -4,5 +4,5 @@
 
     <item
         android:id="@+id/buttonParametre"
-        android:title="Parametre"/>
+        android:title="@string/settings"/>
 </menu>

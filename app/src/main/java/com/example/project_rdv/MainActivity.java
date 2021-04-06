@@ -90,7 +90,8 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()){
             case R.id.buttonParametre: {
-                Toast.makeText(this, "Search", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(this,SettingsActivity.class);
+                startActivity(intent);
                 return true;
             }
             default:

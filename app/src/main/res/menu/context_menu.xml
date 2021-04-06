@@ -2,14 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:id="@+id/call"
-        android:title="Appeler"></item>
+        android:title="@string/call"></item>
 
     <item android:id="@+id/localisation"
-        android:title="carte"></item>
+        android:title="@string/map"></item>
 
     <item android:id="@+id/share"
-        android:title="partager"></item>
+        android:title="@string/share"></item>
 
     <item android:id="@+id/delete"
-        android:title="supprimer"></item>
+        android:title="@string/delete"></item>
 </menu>

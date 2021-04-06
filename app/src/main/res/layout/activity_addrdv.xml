@@ -19,7 +19,7 @@
                 android:id="@+id/buttonAccueil"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Liste des RDVs"
+                android:text="@string/btnAccueil"
                 tools:layout_conversion_absoluteHeight="48dp"
                 tools:layout_conversion_absoluteWidth="88dp" />
 
@@ -31,25 +31,25 @@
                 android:id="@+id/editTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Titre" />
+                android:hint="@string/editTitle" />
 
             <EditText
                 android:id="@+id/editAddress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Adresse" />
+                android:hint="@string/editAddress" />
 
             <EditText
                 android:id="@+id/editDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Entrer Date" />
+                android:hint="@string/editDate" />
 
             <EditText
                 android:id="@+id/editTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Selectionner Heure" />
+                android:hint="@string/editTime" />
 
             <TableRow
                 android:layout_width="match_parent"
@@ -62,7 +62,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
                     android:digits="0123456789+"
-                    android:hint="Entrer un numéro"
+                    android:hint="@string/editPhone"
                     android:inputType="phone" />
 
                 <ImageButton
@@ -82,7 +82,7 @@
                 android:id="@+id/editDesc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:hint="Entrer Description" />
+                android:hint="@string/editDesc" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -97,7 +97,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
                     android:onClick="saveRdv"
-                    android:text="Valider"
+                    android:text="@string/Submit"
                     android:layout_margin="10dp"/>
 
                 <Button
@@ -107,7 +107,7 @@
                     android:layout_gravity="bottom"
                     android:onClick="onCancelClick"
                     android:layout_margin="10dp"
-                    android:text="Annuler" />
+                    android:text="@string/Cancel" />
 
             </LinearLayout>
         </TableLayout>

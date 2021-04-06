@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Gestion des RDVs</string>
+    <string name="addRdv">Ajouter un RDV</string>
+    <string name="editDesc">Entrer Description</string>
+    <string name="editPhone">Entrer un numéro</string>
+    <string name="editTime">Selectionner Heure</string>
+    <string name="btnAccueil">Liste des RDVs</string>
+    <string name="Empty">Aucun RDV</string>
+    <string name="editTitle">Titre</string>
+    <string name="editDate">Entrer Date</string>
+    <string name="editAddress">Adresse</string>
+    <string name="Submit">Valider</string>
+    <string name="Cancel">Annuler</string>
+    <string name="settings">Paramètres</string>
+    <string name="settings_lang">Langue</string>
+    <string name="settings_en">Anglais</string>
+    <string name="settings_fr">Français</string>
+    <string name="call">Appeler</string>
+    <string name="map">Carte</string>
+    <string name="share">partager</string>
+    <string name="delete">supprimer</string>
+</resources>
