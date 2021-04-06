@@ -1,7 +1,9 @@
 package com.example.project_rdv;
 
 import android.Manifest;
+import android.app.AlarmManager;
 import android.app.DatePickerDialog;
+import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -29,6 +31,7 @@ import androidx.core.content.ContextCompat;
 
 import java.util.Calendar;
 import java.util.Locale;
+import java.util.concurrent.TimeUnit;
 
 public class addRDV extends AppCompatActivity {
     DatabaseHelper myHelper;
@@ -87,9 +90,6 @@ public class addRDV extends AppCompatActivity {
         if(!fromAdd){
             Bundle b= intent.getExtras();
             RDV selectedRDV= b.getParcelable("SelectedRDV");
-            Log.v("--donnée passée--", String.valueOf(selectedRDV));
-            Log.v("--donnée passée--",selectedRDV.getTitle());
-            Log.v("--donnée adresse--",selectedRDV.getAddress());
             tvId.setText(String.valueOf(selectedRDV.getId()));
             eTitle.setText(selectedRDV.getTitle());
             ePlace.setText(selectedRDV.getAddress());
@@ -165,20 +165,29 @@ public class addRDV extends AppCompatActivity {
         String time = eTime.getText().toString();
         String address = ePlace.getText().toString();
 
+        Intent main;
+
         if(fromAdd){
             RDV rdv = new RDV(title, description, date, time, address, phone, false);
             myHelper.add(rdv);
-            Intent main = new Intent(v.getContext(), MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(main);
+            main = new Intent(v.getContext(), MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
         }
         else {
             Long id = Long.parseLong(tvId.getText().toString());
             RDV moment = new RDV(id,title, description, date, time, address, phone, false);
             int n = myHelper.update(moment);
 
-            Intent main = new Intent(this,MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-            startActivity(main);
+            main = new Intent(this,MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+
         }
+
+        Intent notifyIntent = new Intent(this,MyReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 2, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
+        alarmManager.set(AlarmManager.RTC_WAKEUP,  System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(7*24*60), pendingIntent);
+
+        startActivity(main);
 
     }
 
