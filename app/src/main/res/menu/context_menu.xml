@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/modify"
-        android:title="modifier"></item>
+    <item android:id="@+id/call"
+        android:title="Appeler"></item>
+
+    <item android:id="@+id/localisation"
+        android:title="carte"></item>
+
+    <item android:id="@+id/share"
+        android:title="partager"></item>
 
     <item android:id="@+id/delete"
         android:title="supprimer"></item>

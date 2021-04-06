@@ -44,13 +44,12 @@ public class RDV implements Parcelable {
     public RDV(Parcel in) {
         id = in.readLong();
         title = in.readString();
-        description = in.readString();
         date = in.readString();
         time = in.readString();
         address = in.readString();
         phone = in.readString();
-        byte tmpState = in.readByte();
-        state = tmpState == 0 ? null : tmpState == 1;
+        description = in.readString();
+        state = in.readBoolean();
     }
 
 
@@ -68,24 +67,19 @@ public class RDV implements Parcelable {
 
     @Override
     public int describeContents() {
-        return hashCode();
+        return 0;
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        if (getId() == null) {
-            dest.writeByte((byte) 0);
-        } else {
-            dest.writeByte((byte) 1);
-            dest.writeLong(getId());
-        }
+        dest.writeLong(getId());
         dest.writeString(getTitle());
-        dest.writeString(getDescription());
         dest.writeString(getDate());
         dest.writeString(getTime());
         dest.writeString(getAddress());
         dest.writeString(getPhone());
-        dest.writeByte((byte) (getState() == null ? 0 : getState() ? 1 : 2));
+        dest.writeString(getDescription());
+        dest.writeBoolean(getState());
     }
 
     public Long getId() {

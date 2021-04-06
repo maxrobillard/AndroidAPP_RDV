@@ -64,18 +64,22 @@ public class addRDV extends AppCompatActivity {
 
         Intent intent = getIntent();
         fromAdd = intent.getBooleanExtra("fromAdd", true);
+        Log.v("--fromAdd--", String.valueOf(fromAdd));
 
         if(!fromAdd){
             Bundle b= intent.getExtras();
             RDV selectedRDV= b.getParcelable("SelectedRDV");
-
+            Log.v("--donnée passée--", String.valueOf(selectedRDV));
+            Log.v("--donnée passée--",selectedRDV.getTitle());
+            Log.v("--donnée adresse--",selectedRDV.getAddress());
             tvId.setText(String.valueOf(selectedRDV.getId()));
             eTitle.setText(selectedRDV.getTitle());
-            eDate.setText(selectedRDV.getDate());
-            eDesc.setText(selectedRDV.getDescription());
             ePlace.setText(selectedRDV.getAddress());
+            eDate.setText(selectedRDV.getDate());
             eTime.setText(selectedRDV.getTime());
             eTel.setText(selectedRDV.getPhone());
+            eDesc.setText(selectedRDV.getDescription());
+
         }
 
         AccessContact.setOnClickListener(new View.OnClickListener() {

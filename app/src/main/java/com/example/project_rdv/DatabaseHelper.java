@@ -64,7 +64,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
     public Cursor getOneRDV(long id){
         String[] projection = {_ID,TITLE,DATE,DESCRIPTION,TIME,ADDRESS,PHONE,STATE};
-        Cursor cursor = database.query(TABLE_NAME,projection,_ID +" = "+ id,null,null,null,null,null);
+        String[] args = {String.valueOf(id)};
+        Cursor cursor = database.query(TABLE_NAME,projection,_ID + "=?", args,null,null,null,"1");
         return cursor;
     }
 
@@ -91,5 +92,18 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     {
         database.delete(TABLE_NAME, _ID + "=" + _id, null);
 
+    }
+    public Cursor getAddress(long id){
+        String[] projection = {_ID,ADDRESS};
+        String[] args = {String.valueOf(id)};
+        Cursor cursor = database.query(TABLE_NAME,projection,_ID + "=?", args,null,null,null,"1");
+        return cursor;
+    }
+
+    public Cursor getPhone(long id){
+        String[] projection = {_ID,PHONE};
+        String[] args = {String.valueOf(id)};
+        Cursor cursor = database.query(TABLE_NAME,projection,_ID + "=?", args,null,null,null,"1");
+        return cursor;
     }
 }

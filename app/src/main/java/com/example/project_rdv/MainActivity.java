@@ -1,9 +1,14 @@
 package com.example.project_rdv;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.ContextMenu;
@@ -20,7 +25,7 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class MainActivity extends AppCompatActivity {
-
+    private static final int CALL_PERMISSION_CODE = 1;
     private DatabaseHelper myHelper;
 
     ListView myListView;
@@ -46,18 +51,11 @@ public class MainActivity extends AppCompatActivity {
                 String titleItem= ((TextView)view.findViewById(R.id.title)).getText().toString();
                 String dateItem= ((TextView)view.findViewById(R.id.tvDate)).getText().toString();
                 String descItem= ((TextView)view.findViewById(R.id.comments)).getText().toString();
-                String addressItem = ((TextView)view.findViewById(R.id.place)).getText().toString();
-
-                //String timeItem = ((TextView)view.findViewById(R.id.editTime)).getText().toString();
-                String timeItem = "22:00";
-                //String phoneItem = ((TextView)view.findViewById(R.id.editPhone)).getText().toString();
-                String phoneItem = "0652297299";
-
-                //RDV pRDV= new RDV(Long.parseLong(IdItem),titleItem,descItem,dateItem,timeItem,addressItem,phoneItem,false);
+                String addressItem = ((TextView)view.findViewById(R.id.address)).getText().toString();
+                String timeItem = ((TextView)view.findViewById(R.id.time)).getText().toString();
+                String phoneItem = ((TextView)view.findViewById(R.id.phone)).getText().toString();
                 RDV pRDV= new RDV(Long.parseLong(IdItem),titleItem,descItem,dateItem,timeItem,addressItem,phoneItem,false);
-
                 Intent intent = new Intent(getApplicationContext(), addRDV.class);
-
                 intent.putExtra("SelectedRDV",pRDV);
                 intent.putExtra("fromAdd",false);
 
@@ -91,11 +89,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch(item.getItemId()){
-            case R.id.new_rdv:{
-                Intent intent=new Intent(this,addRDV.class);
-                startActivity(intent);
-                return true;
-            }
             case R.id.buttonParametre: {
                 Toast.makeText(this, "Search", Toast.LENGTH_LONG).show();
                 return true;
@@ -108,8 +101,8 @@ public class MainActivity extends AppCompatActivity {
     public void chargeData(){
         final String[] from = new String[]{DatabaseHelper._ID, DatabaseHelper.TITLE, DatabaseHelper.DESCRIPTION,DatabaseHelper.DATE,DatabaseHelper.TIME,DatabaseHelper.ADDRESS,
                 DatabaseHelper.PHONE,DatabaseHelper.STATE};
-        Log.v("----item-----", String.valueOf(from));
-        final int[]to= new int[]{R.id.idRdv,R.id.title,R.id.comments,R.id.tvDate};
+
+        final int[]to= new int[]{R.id.idRdv,R.id.title,R.id.comments,R.id.tvDate,R.id.time,R.id.address,R.id.phone,R.id.state};
 
         Cursor c = myHelper.getAllRDV();
         SimpleCursorAdapter adapter= new SimpleCursorAdapter(this,R.layout.rdv_item_view,c,from,to,0);
@@ -132,8 +125,72 @@ public class MainActivity extends AppCompatActivity {
             chargeData();
             return true;
         }
+        if (item.getItemId()==R.id.localisation){
+            Cursor c = myHelper.getAddress(info.id);
+
+            String rdv_address = null;
+
+            if (c.moveToFirst()){
+                rdv_address = c.getString(c.getColumnIndex("address"));
+
+            }
+
+            String map = "http://maps.google.co.in/maps?q="+ String.valueOf(rdv_address) ;
+            Uri gmmIntentUri = Uri.parse(map);
+            Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+            mapIntent.setPackage("com.google.android.apps.maps");
+            startActivity(mapIntent);
+
+        }
+        if (item.getItemId()==R.id.share){
+            shareInfo(info.id);
+        }
+        if(item.getItemId()==R.id.call){
+            Cursor c = myHelper.getPhone(info.id);
+            String rdv_phone = null;
+            if (c.moveToFirst()){
+                rdv_phone = c.getString(c.getColumnIndex("phone"));
+            }
+            Log.v("---phone---",rdv_phone);
+            if (checkCallPermission()){
+                Log.v("---boucleCall---","hello");
+                Intent callIntent = new Intent(Intent.ACTION_CALL);
+                callIntent.setData(Uri.parse("tel:" + rdv_phone));
+                startActivity(callIntent);
+            }
+            else {
+                requestCallPermission();
+            }
+
+        }
         return super.onContextItemSelected(item);
     }
 
+    private boolean checkCallPermission(){
+        boolean result = ContextCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE)==(PackageManager.PERMISSION_GRANTED);
+        return result;
+    }
+    private void requestCallPermission(){
+        String[] permission = {Manifest.permission.CALL_PHONE};
+        ActivityCompat.requestPermissions(this,permission,CALL_PERMISSION_CODE);
+    }
 
-}
+    public void shareInfo(long id) {
+        Cursor c = myHelper.getOneRDV(id);
+        String info = null;
+        if (c.moveToFirst()) {
+            info = c.getString(c.getColumnIndex("title")) + " " +
+                    c.getString(c.getColumnIndex("date")) + " " +
+                    c.getString(c.getColumnIndex("time")) + " " +
+                    c.getString(c.getColumnIndex("address"));
+        }
+
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, info);
+        sendIntent.setType("text/plain");
+        startActivity(sendIntent);
+    }
+
+
+    }
