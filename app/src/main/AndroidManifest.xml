@@ -23,7 +23,6 @@
             android:label="@string/addRdv"/>
         <activity android:name=".SettingsActivity"
             android:label="@string/settings"/>
-        <service android:name=".NotificationService"/>
     </application>
 
 </manifest>
