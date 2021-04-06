@@ -6,7 +6,9 @@ import androidx.core.content.ContextCompat;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -24,10 +26,12 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.Locale;
+
 public class MainActivity extends AppCompatActivity {
     private static final int CALL_PERMISSION_CODE = 1;
     private DatabaseHelper myHelper;
-
+    SharedPreferences sharedPreferences;
     ListView myListView;
 
     @Override
@@ -43,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
 
         chargeData();
         registerForContextMenu(myListView);
+
         myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)

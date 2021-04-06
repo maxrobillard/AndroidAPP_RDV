@@ -51,6 +51,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void close() {
         database.close();
     }
+    
     public void add(RDV rdv){
         ContentValues contentValues= new ContentValues();
         contentValues.put(TITLE,rdv.getTitle());

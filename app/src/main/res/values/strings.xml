@@ -9,7 +9,7 @@
     <string name="editTitle">Title</string>
     <string name="editDate">Enter Date</string>
     <string name="editAddress">Address</string>
-    <string name="Submit">Validate</string>
+    <string name="Submit">Submit</string>
     <string name="Cancel">Cancel</string>
     <string name="settings">Settings</string>
     <string name="settings_lang">Language</string>

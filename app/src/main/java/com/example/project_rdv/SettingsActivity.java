@@ -21,7 +21,6 @@ public class SettingsActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         sharedPreferences = getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE);
-
         String language = sharedPreferences.getString("lang","en");
         setContentView(R.layout.activity_settings);
 
