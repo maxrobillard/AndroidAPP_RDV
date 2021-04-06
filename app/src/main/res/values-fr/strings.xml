@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">Gestion des RDVs</string>
+    <string name="settings_style">Style</string>
+    <string name="Light">Clair</string>
+    <string name="Dark">Sombre</string>
+    <string name="Green">Vert</string>
     <string name="addRdv">Ajouter un RDV</string>
     <string name="editDesc">Entrer Description</string>
     <string name="editPhone">Entrer un numéro</string>

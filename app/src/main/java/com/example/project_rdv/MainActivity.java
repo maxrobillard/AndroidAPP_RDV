@@ -5,6 +5,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -31,12 +32,15 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
     private static final int CALL_PERMISSION_CODE = 1;
     private DatabaseHelper myHelper;
-    SharedPreferences sharedPreferences;
     ListView myListView;
+    SharedPreferences sharedPreferencesStyle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPreferencesStyle = getSharedPreferences("PREF_THEME", Context.MODE_PRIVATE);
+        int style = sharedPreferencesStyle.getInt("theme",R.style.Theme_Project_RDV);
+        setTheme(style);
         setContentView(R.layout.activity_main);
 
         myHelper=new DatabaseHelper(this);

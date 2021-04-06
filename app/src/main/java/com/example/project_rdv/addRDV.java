@@ -3,8 +3,11 @@ package com.example.project_rdv;
 import android.Manifest;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -25,6 +28,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import java.util.Calendar;
+import java.util.Locale;
 
 public class addRDV extends AppCompatActivity {
     DatabaseHelper myHelper;
@@ -40,10 +44,15 @@ public class addRDV extends AppCompatActivity {
     private static final int CONTACT_PERMISSION_CODE = 1;
     private static  final int CONTACT_PICK_CODE = 2;
     private boolean fromAdd;
+    SharedPreferences sharedPreferencesStyle;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        sharedPreferencesStyle = getSharedPreferences("PREF_THEME", Context.MODE_PRIVATE);
+        int style = sharedPreferencesStyle.getInt("theme",R.style.Theme_Project_RDV);
+        setTheme(style);
         setContentView(R.layout.activity_addrdv);
 
 

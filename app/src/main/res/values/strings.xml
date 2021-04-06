@@ -1,5 +1,9 @@
 <resources>
     <string name="app_name">Management of appointments</string>
+    <string name="settings_style">Style</string>
+    <string name="Light">Light</string>
+    <string name="Dark">Dark</string>
+    <string name="Green">Green</string>
     <string name="addRdv">Add an appointment</string>
     <string name="editDesc">Enter Description</string>
     <string name="editPhone">Enter a phone number</string>
