@@ -69,6 +69,7 @@
                     android:layout_marginLeft="5dp"
                     android:autoLink="map"
                     android:clickable="true"
+                    android:onClick="perform_action"
                     android:drawableLeft="@android:drawable/ic_dialog_map"
                     android:gravity="center_vertical"
                     android:hint="@string/editAddress"

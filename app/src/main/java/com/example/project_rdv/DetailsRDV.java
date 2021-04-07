@@ -4,6 +4,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
+import android.database.Cursor;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -99,5 +102,24 @@ public class DetailsRDV extends AppCompatActivity {
         //Intent intent = new Intent(this,MainActivity.class);
         // startActivity(intent);
         finish();
+    }
+    public void perform_action(View v){
+        Intent intent = getIntent();
+        Bundle b= intent.getExtras();
+        RDV selectedRDV= b.getParcelable("SelectedRDV");
+        Cursor c = myHelper.getAddress(selectedRDV.getId());
+
+        String rdv_address = null;
+
+        if (c.moveToFirst()){
+            rdv_address = c.getString(c.getColumnIndex("address"));
+
+        }
+
+        String map = "http://maps.google.co.in/maps?q="+ String.valueOf(rdv_address) ;
+        Uri gmmIntentUri = Uri.parse(map);
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+        mapIntent.setPackage("com.google.android.apps.maps");
+        startActivity(mapIntent);
     }
 }
