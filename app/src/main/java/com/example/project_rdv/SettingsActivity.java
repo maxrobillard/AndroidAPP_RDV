@@ -25,7 +25,7 @@ public class SettingsActivity extends AppCompatActivity {
         sharedPreferencesLang = getSharedPreferences("PREF_NAME", Context.MODE_PRIVATE);
         String language = sharedPreferencesLang.getString("lang","en");
         sharedPreferencesStyle = getSharedPreferences("PREF_THEME", Context.MODE_PRIVATE);
-        int style = sharedPreferencesStyle.getInt("theme",R.style.Theme_Project_RDV);
+        int style = sharedPreferencesStyle.getInt("theme",R.style.Theme_AppCompat);
         setTheme(style);
         setContentView(R.layout.activity_settings);
 
@@ -45,7 +45,7 @@ public class SettingsActivity extends AppCompatActivity {
 
         switch(style){
 
-            case R.style.Theme_Project_RDV:
+            case R.style.Theme_AppCompat_Light:
                 RadioButton rbLight = findViewById(R.id.rbLight);
                 rbLight.setChecked(true);
 
@@ -59,6 +59,11 @@ public class SettingsActivity extends AppCompatActivity {
             case R.style.AppTheme_Green:
                 RadioButton rbGreen = findViewById(R.id.rbGreen);
                 rbGreen.setChecked(true);
+                break;
+
+            case R.style.AppTheme_Purple:
+                RadioButton rbPurple = findViewById(R.id.rbPurple);
+                rbPurple.setChecked(true);
                 break;
         }
 
@@ -110,11 +115,11 @@ public class SettingsActivity extends AppCompatActivity {
 
         boolean checked = ((RadioButton) view).isChecked();
         editor = sharedPreferencesStyle.edit();
-        int style = R.style.Theme_Project_RDV;
+        int style = R.style.Theme_AppCompat;
         switch(view.getId()){
             case R.id.rbLight:
                 if (checked) {
-                    style = R.style.Theme_Project_RDV;
+                    style = R.style.Theme_AppCompat_Light;
                     editor.putInt("theme", style);
                     editor.commit();
                     editor.apply();
@@ -132,6 +137,16 @@ public class SettingsActivity extends AppCompatActivity {
 
             case R.id.rbGreen:
                 style = R.style.AppTheme_Green;
+                if (checked){
+                    editor.putInt("theme", style);
+                    editor.commit();
+                    editor.apply();
+                }
+
+                break;
+
+            case R.id.rbPurple:
+                style = R.style.AppTheme_Purple;
                 if (checked){
                     editor.putInt("theme", style);
                     editor.commit();

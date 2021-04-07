@@ -55,7 +55,7 @@ public class addRDV extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         sharedPreferencesStyle = getSharedPreferences("PREF_THEME", Context.MODE_PRIVATE);
-        int style = sharedPreferencesStyle.getInt("theme",R.style.Theme_Project_RDV);
+        int style = sharedPreferencesStyle.getInt("theme",R.style.Theme_AppCompat);
         setTheme(style);
         sharedPreferencesLang = getSharedPreferences("PREF_NAME", MODE_PRIVATE);
         String language = sharedPreferencesLang.getString("lang","en");

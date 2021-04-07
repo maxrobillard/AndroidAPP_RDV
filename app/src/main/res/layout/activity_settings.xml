@@ -45,7 +45,7 @@
         <RadioGroup
             android:id="@+id/rgStyle"
             android:layout_width="200dp"
-            android:layout_height="170dp"
+            android:layout_height="200dp"
             app:layout_constraintBottom_toTopOf="@+id/Back"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
@@ -78,6 +78,13 @@
                 android:layout_height="45dp"
                 android:onClick="onStyleRadioButtonClick"
                 android:text="@string/Green" />
+
+            <RadioButton
+                android:id="@+id/rbPurple"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:onClick="onStyleRadioButtonClick"
+                android:text="@string/Purple" />
         </RadioGroup>
 
         <Button
