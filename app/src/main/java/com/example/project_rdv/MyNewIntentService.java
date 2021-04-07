@@ -21,8 +21,8 @@ public class MyNewIntentService extends IntentService {
     protected void onHandleIntent(Intent intent) {
         Notification.Builder builder = new Notification.Builder(this);
 
-        builder.setContentTitle("My Title");
-        builder.setContentText("This is the Body");
+        builder.setContentTitle(intent.getStringExtra("RDVTitle"));
+        builder.setContentText(intent.getStringExtra("RDVTitle")+ " is coming in a few weeks");
         builder.setSmallIcon(R.drawable.ic_launcher_background);
         builder.setWhen(System.currentTimeMillis());
 

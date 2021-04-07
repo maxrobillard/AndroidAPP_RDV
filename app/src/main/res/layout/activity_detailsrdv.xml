@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/displayId"
+                />
+
+            <EditText
+                android:id="@+id/displayTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/editTitle" />
+
+            <EditText
+                android:id="@+id/displayAddress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/editAddress" />
+
+            <EditText
+                android:id="@+id/displayDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/editDate" />
+
+            <EditText
+                android:id="@+id/displayTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/editTime" />
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:weightSum="5">
+
+                <EditText
+                    android:id="@+id/displayPhone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="4"
+                    android:digits="0123456789+"
+                    android:hint="@string/editPhone"
+                    android:inputType="phone" />
+
+
+
+            </TableRow>
+
+            <EditText
+                android:id="@+id/displayDesc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/editDesc" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="bottom|center"
+                android:layout_margin="10dp"
+                android:layout_gravity="bottom">
+
+                <Button
+                    android:id="@+id/Submission"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:text="@string/Submit"
+                    android:layout_margin="10dp"/>
+
+                <Button
+                    android:id="@+id/Cancel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:layout_margin="10dp"
+                    android:text="@string/Cancel" />
+
+            </LinearLayout>
+        </TableLayout>
+    </ScrollView>
+
+</LinearLayout>

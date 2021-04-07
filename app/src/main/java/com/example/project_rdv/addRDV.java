@@ -183,6 +183,7 @@ public class addRDV extends AppCompatActivity {
         }
 
         Intent notifyIntent = new Intent(this, MyReceiver.class);
+        notifyIntent.putExtra("RDVTitle",title);
         Log.v("----------", String.valueOf(notifyIntent));
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 2, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);

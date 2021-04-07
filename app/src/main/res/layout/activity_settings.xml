@@ -14,8 +14,8 @@
             android:id="@+id/rgLanguage"
             android:layout_width="200dp"
             android:layout_height="96dp"
-
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="50dp"
+            app:layout_constraintBottom_toTopOf="@+id/rgStyle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +46,7 @@
             android:id="@+id/rgStyle"
             android:layout_width="200dp"
             android:layout_height="200dp"
-            app:layout_constraintBottom_toTopOf="@+id/Back"
+            app:layout_constraintBottom_toTopOf="@+id/radioGroup"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
@@ -87,20 +87,65 @@
                 android:text="@string/Purple" />
         </RadioGroup>
 
+
+        <RadioGroup
+            android:id="@+id/radioGroup"
+            android:layout_width="200dp"
+            android:layout_height="193dp"
+            app:layout_constraintBottom_toTopOf="@+id/Back"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rgStyle">
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/settings_notification" />
+
+            <RadioButton
+                android:id="@+id/rbOneWeek"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="onReminderRadioButtonClick"
+                android:text="@string/settings_1w" />
+
+            <RadioButton
+                android:id="@+id/rbTwoWeek"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onReminderRadioButtonClick"
+                android:text="@string/settings_2w" />
+
+            <RadioButton
+                android:id="@+id/rbThreeWeek"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:onClick="onReminderRadioButtonClick"
+                android:text="@string/settings_3w" />
+        </RadioGroup>
+
         <Button
             android:id="@+id/Back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
-            android:layout_margin="10dp"
-            android:layout_marginBottom="10dp"
             android:onClick="onBackClick"
             android:text="@string/btnAccueil"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/radioGroup"
             tools:ignore="MissingConstraints" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="20dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

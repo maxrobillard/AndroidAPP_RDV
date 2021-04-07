@@ -107,4 +107,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         Cursor cursor = database.query(TABLE_NAME,projection,_ID + "=?", args,null,null,null,"1");
         return cursor;
     }
+    public Cursor getTitle(long id){
+        String[] projection = {_ID,TITLE};
+        String[] args = {String.valueOf(id)};
+        Cursor cursor = database.query(TABLE_NAME,projection,_ID + "=?", args,null,null,null,"1");
+        return cursor;
+    }
+    public Cursor getDate(long id){
+        String[] projection = {_ID,DATE};
+        String[] args = {String.valueOf(id)};
+        Cursor cursor = database.query(TABLE_NAME,projection,_ID + "=?", args,null,null,null,"1");
+        return cursor;
+    }
+    public Cursor getDesc(long id){
+        String[] projection = {_ID,DESCRIPTION};
+        String[] args = {String.valueOf(id)};
+        Cursor cursor = database.query(TABLE_NAME,projection,_ID + "=?", args,null,null,null,"1");
+        return cursor;
+    }
+    public Cursor getTime(long id){
+        String[] projection = {_ID,TIME};
+        String[] args = {String.valueOf(id)};
+        Cursor cursor = database.query(TABLE_NAME,projection,_ID + "=?", args,null,null,null,"1");
+        return cursor;
+    }
 }

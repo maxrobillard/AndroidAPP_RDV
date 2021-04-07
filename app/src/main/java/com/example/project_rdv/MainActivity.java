@@ -5,6 +5,7 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -13,6 +14,7 @@ import android.content.res.Configuration;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
+import android.telecom.Call;
 import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     ListView myListView;
     SharedPreferences sharedPreferencesStyle;
     SharedPreferences sharedPreferencesLang;
+    Activity view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         chargeData();
         registerForContextMenu(myListView);
 
+
         myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id)
@@ -73,10 +77,9 @@ public class MainActivity extends AppCompatActivity {
                 String timeItem = ((TextView)view.findViewById(R.id.time)).getText().toString();
                 String phoneItem = ((TextView)view.findViewById(R.id.phone)).getText().toString();
                 RDV pRDV= new RDV(Long.parseLong(IdItem),titleItem,descItem,dateItem,timeItem,addressItem,phoneItem,false);
-                Intent intent = new Intent(getApplicationContext(), addRDV.class);
+                Intent intent = new Intent(getApplicationContext(), DetailsRDV.class);
                 intent.putExtra("SelectedRDV",pRDV);
                 intent.putExtra("fromAdd",false);
-
                 startActivity(intent);
 
             }
@@ -181,7 +184,50 @@ public class MainActivity extends AppCompatActivity {
                 requestCallPermission();
             }
 
+        }if (item.getItemId()==R.id.modify){
+            Cursor phone = myHelper.getPhone(info.id);
+            Cursor title = myHelper.getTitle(info.id);
+            Cursor date = myHelper.getDate(info.id);
+            Cursor address = myHelper.getAddress(info.id);
+            Cursor desc = myHelper.getDesc(info.id);
+            Cursor time = myHelper.getTime(info.id);
+
+            String titleItem = null;
+            String dateItem = null;
+            String descItem = null;
+            String addressItem = null;
+            String timeItem = null;
+            String phoneItem = null;
+
+            String IdItem = String.valueOf(info.id);
+            if(phone.moveToFirst()) {
+                phoneItem = phone.getString(phone.getColumnIndex("phone"));
+            }
+            if(address.moveToFirst()){
+                addressItem = address.getString(address.getColumnIndex("address"));
+            }
+            if(title.moveToFirst()){
+                titleItem = title.getString(title.getColumnIndex("title"));
+            }
+            if(date.moveToFirst()){
+                dateItem = date.getString(date.getColumnIndex("date"));
+            }
+            if(desc.moveToFirst()){
+                descItem = desc.getString(desc.getColumnIndex("description"));
+            }
+            if(time.moveToFirst()){
+                timeItem = time.getString(time.getColumnIndex("time"));
+            }
+
+            RDV pRDV = new RDV(Long.parseLong(IdItem), titleItem, descItem, dateItem, timeItem, addressItem, phoneItem, false);
+            Intent intent = new Intent(getApplicationContext(), addRDV.class);
+            intent.putExtra("SelectedRDV", pRDV);
+            intent.putExtra("fromAdd", false);
+            startActivity(intent);
+
+            return true;
         }
+
         return super.onContextItemSelected(item);
     }
 

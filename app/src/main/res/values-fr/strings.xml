@@ -3,7 +3,14 @@
     <string name="settings_style">Style</string>
     <string name="Light">Clair</string>
     <string name="Purple">Violet</string>
+    <string name="settings_notification">Notification</string>
+    <string name="settings_1w">1 semaine avant</string>
+    <string name="Detailsrdv">Details du RDV</string>
+    <string name="NotificationMessage">est prévu pour dans quelques semaines</string>
+    <string name="settings_2w">2 semaines avant</string>
+    <string name="settings_3w">3 semaines avant</string>
     <string name="Dark">Sombre</string>
+    <string name="modify">modifier</string>
     <string name="Green">Vert</string>
     <string name="addRdv">Ajouter un RDV</string>
     <string name="editDesc">Entrer Description</string>

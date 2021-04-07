@@ -17,6 +17,7 @@ public class MyReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
 
         Intent myIntent = new Intent(context, MyNewIntentService.class);
+        myIntent.putExtra("RDVTitle",intent.getStringExtra("RDVTitle"));
         context.startForegroundService(myIntent);
     }
 }
