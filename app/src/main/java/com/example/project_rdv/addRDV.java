@@ -29,7 +29,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
@@ -182,13 +185,45 @@ public class addRDV extends AppCompatActivity {
 
         }
 
-        Intent notifyIntent = new Intent(this, MyReceiver.class);
-        notifyIntent.putExtra("RDVTitle",title);
-        Log.v("----------", String.valueOf(notifyIntent));
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 2, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
-        alarmManager.set(AlarmManager.RTC_WAKEUP,  System.currentTimeMillis() + TimeUnit.MINUTES.toMillis(200), pendingIntent);
 
+
+
+        SharedPreferences sharedPreferences = getSharedPreferences("PREF_NOTIF", Context.MODE_PRIVATE);
+        String reminder = sharedPreferences.getString("reminder","1w");
+        int nbWeeks = 1;
+        switch (reminder){
+            case "1w":
+                nbWeeks =1 ;
+                break;
+            case "2w":
+                nbWeeks =2 ;
+                break;
+            case "3w":
+                nbWeeks =3 ;
+                break;
+        }
+        try {
+
+            final String OLD_FORMAT = "MM-dd-yyyy";
+            final String NEW_FORMAT = "yyyy-MM-dd HH:mm:ss.SSS";
+            String newDateString;
+            SimpleDateFormat formatter = new SimpleDateFormat(OLD_FORMAT);
+            Date d = formatter.parse(date);
+            formatter.applyPattern(NEW_FORMAT);
+            newDateString = formatter.format(d);
+
+            Timestamp ts = Timestamp.valueOf(newDateString);
+            long tsTime= ts.getTime();
+
+            Intent notifyIntent = new Intent(this,MyReceiver.class);
+            PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 2, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+            AlarmManager alarmManager = (AlarmManager) this.getSystemService(Context.ALARM_SERVICE);
+
+            alarmManager.set(AlarmManager.RTC_WAKEUP,  tsTime - TimeUnit.MINUTES.toMillis(nbWeeks*7*24*60), pendingIntent);
+
+        } catch(Exception e) {
+
+        }
         startActivity(main);
 
     }
