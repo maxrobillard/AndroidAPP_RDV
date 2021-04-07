@@ -17,6 +17,7 @@
     <string name="Detailsrdv">Details of the appointment </string>
     <string name="btnAccueil">List of meetings</string>
     <string name="NotificationMessage">is coming in a few weeks</string>
+    <string name="Modify">Modify</string>
     <string name="Empty">No appointment</string>
     <string name="editTitle">Title</string>
     <string name="editDate">Enter Date</string>

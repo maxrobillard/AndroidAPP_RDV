@@ -1,94 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <ScrollView
+    <LinearLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <TableLayout
+
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/displayId"
-                />
-
-            <EditText
-                android:id="@+id/displayTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/editTitle" />
-
-            <EditText
-                android:id="@+id/displayAddress"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/editAddress" />
-
-            <EditText
-                android:id="@+id/displayDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/editDate" />
-
-            <EditText
-                android:id="@+id/displayTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/editTime" />
-
-            <TableRow
+            <TableLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:weightSum="5">
+                android:layout_height="match_parent">
 
-                <EditText
-                    android:id="@+id/displayPhone"
+                <TextView
+                    android:id="@+id/displayId"
+                    android:visibility="gone" />
+
+                <TableRow
+                    android:background="#881010"
+                    android:foregroundGravity="top"
+                    android:gravity="center_horizontal">
+
+                    <TextView
+                        android:id="@+id/displayTitle"
+                        android:layout_width="144dp"
+                        android:layout_height="wrap_content"
+                        android:drawableTop="?attr/editTextBackground"
+                        android:foregroundGravity="center"
+                        android:gravity="center_horizontal"
+                        android:hint="@string/editTitle"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/displayTime"
+                        android:layout_width="140dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:hint="@string/editTime"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                        android:textColor="#FFFFFF"
+                        app:drawableTopCompat="@android:drawable/ic_menu_recent_history" />
+
+                    <TextView
+                        android:id="@+id/displayDate"
+                        android:layout_width="134dp"
+                        android:layout_height="wrap_content"
+                        android:drawableTop="@android:drawable/ic_menu_day"
+                        android:gravity="center_horizontal"
+                        android:hint="@string/editDate"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                </TableRow>
+
+                <TextView
+                    android:id="@+id/displayAddress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:digits="0123456789+"
-                    android:hint="@string/editPhone"
-                    android:inputType="phone" />
+                    android:layout_margin="5dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:autoLink="map"
+                    android:clickable="true"
+                    android:drawableLeft="@android:drawable/ic_dialog_map"
+                    android:gravity="center_vertical"
+                    android:hint="@string/editAddress"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:textStyle="italic" />
+
+                <TableRow
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:weightSum="5">
+
+                    <TextView
+                        android:id="@+id/displayPhone"
+                        android:layout_width="89dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="4"
+                        android:autoLink="phone"
+                        android:digits="0123456789+"
+                        android:drawableLeft="@android:drawable/ic_menu_call"
+                        android:gravity="center_vertical"
+                        android:hint="@string/editPhone"
+                        android:inputType="phone"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textStyle="italic" />
 
 
+                </TableRow>
 
-            </TableRow>
-
-            <EditText
-                android:id="@+id/displayDesc"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/editDesc" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="bottom|center"
-                android:layout_margin="10dp"
-                android:layout_gravity="bottom">
-
-                <Button
-                    android:id="@+id/Submission"
+                <TextView
+                    android:id="@+id/displayDesc"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:text="@string/Submit"
-                    android:layout_margin="10dp"/>
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="50dp"
+                    android:autoText="true"
+                    android:hint="@string/editDesc" />
 
-                <Button
-                    android:id="@+id/Cancel"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
                     android:layout_margin="10dp"
-                    android:text="@string/Cancel" />
+                    android:foregroundGravity="bottom"
+                    android:gravity="bottom|center">
 
-            </LinearLayout>
-        </TableLayout>
-    </ScrollView>
+                </LinearLayout>
+            </TableLayout>
+        </ScrollView>
+    </LinearLayout>
 
-</LinearLayout>
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/Cancel2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:clickable="true"
+        android:onClick="onCancelClick2"
+        app:backgroundTint="#F30909"
+        app:layout_anchorGravity="bottom|right|end"
+        app:srcCompat="@android:drawable/ic_media_rew"
+        tools:layout_conversion_absoluteHeight="17dp"
+        tools:layout_conversion_absoluteWidth="17dp" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/Modifyrdv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|left"
+        android:clickable="true"
+        app:backgroundTint="#FF9800"
+        app:layout_anchorGravity="center|start"
+        app:srcCompat="@android:drawable/ic_menu_edit"
+        tools:layout_conversion_absoluteHeight="17dp"
+        tools:layout_conversion_absoluteWidth="17dp" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

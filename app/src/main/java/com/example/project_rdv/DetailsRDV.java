@@ -6,10 +6,13 @@ import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.Locale;
 
@@ -18,12 +21,12 @@ public class DetailsRDV extends AppCompatActivity {
     private SharedPreferences sharedPreferencesLang;
     private boolean fromAdd;
     private DatabaseHelper myHelper;
-    EditText eDate;
-    EditText eTime;
-    EditText eTel;
-    EditText eTitle;
-    EditText eDesc;
-    EditText ePlace;
+    TextView eDate;
+    TextView eTime;
+    TextView eTel;
+    TextView eTitle;
+    TextView eDesc;
+    TextView ePlace;
     TextView tvId;
 
     @Override
@@ -43,12 +46,12 @@ public class DetailsRDV extends AppCompatActivity {
         setContentView(R.layout.activity_detailsrdv);
 
         tvId = (TextView) findViewById(R.id.displayId);
-        eDesc  = (EditText) findViewById(R.id.displayDesc);
-        ePlace =(EditText) findViewById(R.id.displayAddress);
-        eDate=(EditText) findViewById(R.id.displayDate);
-        eTime=(EditText) findViewById(R.id.displayTime);
-        eTitle = (EditText) findViewById(R.id.displayTitle);
-        eTel = (EditText) findViewById(R.id.displayPhone);
+        eDesc  = (TextView) findViewById(R.id.displayDesc);
+        ePlace =(TextView) findViewById(R.id.displayAddress);
+        eDate=(TextView) findViewById(R.id.displayDate);
+        eTime=(TextView) findViewById(R.id.displayTime);
+        eTitle = (TextView) findViewById(R.id.displayTitle);
+        eTel = (TextView) findViewById(R.id.displayPhone);
 
         myHelper = new DatabaseHelper(this);
         myHelper.open();
@@ -56,18 +59,45 @@ public class DetailsRDV extends AppCompatActivity {
         Intent intent = getIntent();
         fromAdd = intent.getBooleanExtra("fromAdd", true);
         Log.v("--fromAdd--", String.valueOf(fromAdd));
+        Bundle b= intent.getExtras();
+        RDV selectedRDV= b.getParcelable("SelectedRDV");
 
         if(!fromAdd){
-            Bundle b= intent.getExtras();
-            RDV selectedRDV= b.getParcelable("SelectedRDV");
             tvId.setText(String.valueOf(selectedRDV.getId()));
             eTitle.setText(selectedRDV.getTitle());
-            ePlace.setText(selectedRDV.getAddress());
+            ePlace.setText("     "+selectedRDV.getAddress());
             eDate.setText(selectedRDV.getDate());
             eTime.setText(selectedRDV.getTime());
-            eTel.setText(selectedRDV.getPhone());
+            eTel.setText("     "+selectedRDV.getPhone());
             eDesc.setText(selectedRDV.getDescription());
 
         }
+
+        FloatingActionButton modifyRDV = findViewById(R.id.Modifyrdv);
+        modifyRDV.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view) {
+                Log.v("------", String.valueOf(tvId));
+                String IdItem= String.valueOf(selectedRDV.getId());
+                String titleItem= selectedRDV.getTitle();
+                String dateItem= selectedRDV.getDate();
+                String descItem= selectedRDV.getDescription();
+                String addressItem = selectedRDV.getAddress();
+                String timeItem = selectedRDV.getTime();
+                String phoneItem = selectedRDV.getPhone();
+                RDV pRDV= new RDV(Long.parseLong(IdItem),titleItem,descItem,dateItem,timeItem,addressItem,phoneItem,false);
+                Intent intent = new Intent(getApplicationContext(), addRDV.class);
+                intent.putExtra("SelectedRDV",pRDV);
+                intent.putExtra("fromAdd",false);
+                startActivity(intent);
+
+
+            }
+        });
+    }
+    public void onCancelClick2(View v){
+        //Intent intent = new Intent(this,MainActivity.class);
+        // startActivity(intent);
+        finish();
     }
 }
